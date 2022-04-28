@@ -6,7 +6,11 @@ engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
-words = ['glare','stare','square','spare','television','programme','competition','often','animals','entered','how','talk','medal','unfortunately','recommended','arrangements','medicine','cancelled','hospital']
+words = []
+f = open('words.txt', 'r')
+for x in f:
+    x =x.strip()
+    words.append(x)
 
 class Word:
     def __init__(self):
@@ -28,3 +32,6 @@ class Word:
         else:
             return False
 
+    def hint(self):
+        masked =  self.random_word[0:2] + len(self.random_word[:-2])*"_"
+        return masked
